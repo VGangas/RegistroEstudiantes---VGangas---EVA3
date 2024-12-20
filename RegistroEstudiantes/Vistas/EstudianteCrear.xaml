@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RegistroEstudiantes.Vistas.EstudianteCrear"
+             Title="EstudianteCrear">
+    <VerticalStackLayout Padding="10" Spacing="10">
+        <Picker Title="Seleccionar Curso"
+                ItemsSource="{Binding Grados}"
+                ItemDisplayBinding="{Binding Nombre}"
+                x:Name="gradoPicker"/>
+            <Entry Placeholder="Primer Nombre"
+               x:Name="primerNombreEntry"/>
+            <Entry Placeholder="Segundo Nombre"
+               x:Name="segundoNombreEntry"/>
+            <Entry Placeholder="Primer Apellido"
+               x:Name="primerApellidoEntry"/>
+            <Entry Placeholder="Segundo Apellido"
+               x:Name="segundoApellidoEntry"/>
+            <Entry Placeholder="Correo Electrónico"
+               x:Name="emailEntry"/>
+            <Entry Placeholder="Edad"
+               x:Name="edadEntry"
+               Keyboard="Numeric"/>
+            <Picker Title="Seleccionar estado"
+                x:Name="estadoPicker">
+                <Picker.Items>
+                    <x:String>Activo</x:String>
+                    <x:String>Inactivo</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button Text="Guardar"
+                x:Name="guardarButton"
+                Clicked="guardarButton_Clicked"/>
+    </VerticalStackLayout>
+</ContentPage>
+    
+    
