@@ -55,6 +55,14 @@
                             <Label Grid.Column="1"
                                    Grid.Row="1"
                                    Text="{Binding Grado.Name}"/>
+                            <ImageButton Grid.Column="2"
+                                         Grid.RowSpan="2"
+                                         Source="edit_icon.png"
+                                         HeightRequest="30"
+                                         WidthRequest="30"
+                                         BackgroundColor="Transparent"
+                                         Clicked="EditarEstudiante_Clicked"
+                                         CommandParameter="{Binding .}" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

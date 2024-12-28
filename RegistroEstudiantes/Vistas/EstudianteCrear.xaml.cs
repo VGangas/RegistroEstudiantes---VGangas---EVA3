@@ -34,26 +34,39 @@ public partial class EstudianteCrear : ContentPage
 
     private async void guardarButton_Clicked(object sender, EventArgs e)
     {
-        Grado grado = gradoPicker.SelectedItem as Grado;
-
-        int selectedIndex = estadoPicker.SelectedIndex;
-        bool estado = selectedIndex == 0;
-
-        var estudiante = new Estudiante
+        try
         {
-            PrimerNombre = primerNombreEntry.Text,
-            SegundoNombre = segundoNombreEntry.Text,
-            PrimerApellido = primerApellidoEntry.Text,
-            SegundoApellido = segundoApellidoEntry.Text,
-            Email = emailEntry.Text,
-            Edad = int.Parse(edadEntry.Text),
-            Grado = grado,
-            Estado = estado
-        };
+            Grado grado = gradoPicker.SelectedItem as Grado;
 
-        await client.Child("Estudiante").PostAsync(estudiante);
+            int selectedIndex = estadoPicker.SelectedIndex;
+            bool estado = selectedIndex == 0;
 
-        await DisplayAlert("Exito", $"El estudiante {estudiante.PrimerNombre} {estudiante.SegundoApellido} fue guardado correctamente", "OK");
-        await Navigation.PopAsync();
+            // Crear el objeto estudiante sin Id inicialmente
+            var estudiante = new Estudiante
+            {
+                PrimerNombre = primerNombreEntry.Text,
+                SegundoNombre = segundoNombreEntry.Text,
+                PrimerApellido = primerApellidoEntry.Text,
+                SegundoApellido = segundoApellidoEntry.Text,
+                Email = emailEntry.Text,
+                Edad = int.Parse(edadEntry.Text),
+                Grado = grado,
+                Estado = estado
+            };
+
+            // Publicar el estudiante en Firebase y obtener la clave generada
+            var respuesta = await client.Child("Estudiante").PostAsync(estudiante);
+            estudiante.Id = respuesta.Key; // Asignar la clave generada al campo Id
+
+            // Actualizar el estudiante en Firebase para incluir el campo Id
+            await client.Child("Estudiantes").Child(estudiante.Id).PutAsync(estudiante);
+
+            await DisplayAlert("Éxito", $"El estudiante {estudiante.PrimerNombre} {estudiante.SegundoApellido} fue guardado correctamente", "OK");
+            await Navigation.PopAsync();
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"Error al guardar el estudiante: {ex.Message}", "OK");
+        }
     }
 }

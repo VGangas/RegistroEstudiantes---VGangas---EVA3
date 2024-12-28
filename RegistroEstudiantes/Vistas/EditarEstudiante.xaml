@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RegistroEstudiantes.Vistas.EditarEstudiante"
+             Title="EditarEstudiante">
+    <StackLayout Padding="20">
+        <Label Text="EditarEstudiante" FontSize="Large" HorizontalOptions="Center" />
+
+        <Entry x:Name="EditarNombreEntry" Placeholder="Primer Nombre" />
+        <Entry x:Name="EditarSegundoNombreEntry" Placeholder="Segundo Nombre" />
+        <Entry x:Name="EditarApellidoEntry" Placeholder="Primer Apellido" />
+        <Entry x:Name="EditarSegundoApellidoEntry" Placeholder="Segundo Apellido" />
+        <Entry x:Name="EditarCorreoEntry" Placeholder="Correo Electrónico" Keyboard="Email" />
+        <Entry x:Name="EditarEdadEntry" Placeholder="Edad" Keyboard="Numeric" />
+
+        <Picker x:Name="EditarGradoPicker"
+        Title="Seleccionar Grado"
+        ItemDisplayBinding="{Binding ListaGrados}" />
+
+
+        <Button Text="Actualizar" Clicked="ActualizarBoton_Clicked" BackgroundColor="#240e54" TextColor="White" />
+    </StackLayout>
+
+</ContentPage>

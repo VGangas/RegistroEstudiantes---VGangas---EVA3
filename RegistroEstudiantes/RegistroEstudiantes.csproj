@@ -68,6 +68,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Vistas\EditarEstudiante.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </MauiXaml>
 	  <MauiXaml Update="Vistas\EstudianteCrear.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
